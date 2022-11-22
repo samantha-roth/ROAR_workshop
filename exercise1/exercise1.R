@@ -1,11 +1,11 @@
-# Exercise 2
+# Exercise 1
 # This code generates 20 sets of samples of size n=100k. 
 # Each sample is drawn from a N(mu_i,5) for i={1,2,...,20} where mu_{1:20} = {10, 20, 30 ,...180,190,200}. 
 # Note that it takes 5 seconds to generate a sample.
 # The code generates a histogram for each set and saves it as a pdf. 
 # We use 1 processors
 
-setwd("/storage/work/svr5482/ROAR_workshop/exercise2")
+setwd("/storage/work/svr5482/ROAR_workshop/exercise1")
 
 setNum<-9
 # Create a wrapper for the function
