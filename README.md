@@ -8,7 +8,9 @@ PART 1: Just use the RStudio Server!
 2. Under Interactive Apps, click RStudio Server
 3. Under Allocation, click "open" or whatever else is available to you.
 4. You can use a custom environment if you want, but you don't have to. We'll start without one.
+
    a) Creating and using a custom environment is useful for code reproducibility since you can keep the version of R the same and you don't have reinstall the same R packages over and over again.
+   
    b) You may need to use software like "gcc" or "github" and you can find which versions are available to use here: https://www.icds.psu.edu/computing-services/software/
 5. Select an R version (only matters if there's no custom environment).
 6. Select 1 hour, 1 core, and 5gb of memory per core.
