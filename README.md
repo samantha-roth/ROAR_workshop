@@ -34,7 +34,10 @@ PART 2: Create a yml file and a pbs script for creating conda environments.
 
 2. Make sure to save the file name as parallel_env.yml (the .yml part is most important, DO NOT write .R!)
 
-3. Create another new text file with specifications as shown in make_parallel_env.yml
+
+PART 2: Create a pbs script for creating conda environments.
+
+1. Create another new text file with specifications as shown in parallel_env.pbs
    
    a) "#!/bin/bash": Always put this at the top. Don't ask me what it means.
    
@@ -67,6 +70,7 @@ PART 2: Create a yml file and a pbs script for creating conda environments.
    j) "conda env create --file paralell_env.yml": create the conda environment with the name of your .yml file!
    
    k) "source deactivate": deactivate your conda environment when you're done using it.
+
 
 
 "source activate /storage/work/svr5482/parallel_env" activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
