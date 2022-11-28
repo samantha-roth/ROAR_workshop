@@ -28,35 +28,46 @@ PART 1: Just use the RStudio Server!
 
 PART 2: Create a pbs script to submit an R code to the cluster
 
-   a) #!/bin/bash
+      #!/bin/bash
    
-   b) #PBS -A open Allocation
-      
-      i. Yours could also be the stat department allocation, "drh20_a_g_sc_default". There are 10 nodes and 20 processors per node available on this allocation. 
+      #PBS -A open   
+   Allocation- Yours could also be the stat department allocation, "drh20_a_g_sc_default". There are 10 nodes and 20 processors per node available on this allocation. 
    
-   c) #PBS -l nodes=1:ppn=3 Nodes and processors per node
+      #PBS -l nodes=1:ppn=3 Nodes and processors per node
       
-      i. Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
+   Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
    
-   d) #PBS -l walltime=72:00:00 Requested wall time, format is HOURS:MINUTES:SECONDS
+      #PBS -l walltime=72:00:00 Requested wall time, format is HOURS:MINUTES:SECONDS
       
-      i. You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
+   You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
    
-   e) #PBS -l pmem=5GB Memory per processor
+      #PBS -l pmem=5GB Memory per processor
       
-      i. Be careful not to request more memory per node than is allowed in your specified allocation. Mine allows up to 250 gb total, which I think is also true for the stat department allocation since "sc" indicates standard core -- same kind of allocation. 
+   Be careful not to request more memory per node than is allowed in your specified allocation. Mine allows up to 250 gb total, which I think is also true for the stat department allocation since "sc" indicates standard core -- same kind of allocation. 
 
-   f) #PBS -N ProjName Job Name
+      #PBS -N ProjName 
+      
+   Job Name
    
-   g) #PBS -j oe Prints log file for completion and errors
+      #PBS -j oe 
+  
+   Prints log file for completion and errors
    
-   h) #PBS -m abe Sends email when job aborts, begins, and ends
+      #PBS -m abe
+ 
+  Sends email when job aborts, begins, and ends
    
-   i) #PBS -M psuid@psu.edu Email Address
+      #PBS -M psuid@psu.edu 
+ 
+ Email Address
    
-   j) cd /storage/work/PSUID/whereIsYourFile Changes directory to where your R file is located
+      cd /storage/work/PSUID/whereIsYourFile 
+ 
+  Changes directory to where your R file is located
    
-   k) Rscript test.R Runs the R file
+      Rscript test.R 
+      
+  Runs the R file
 
 
 PART 3.1: Create a yml file and a pbs script for creating conda environments.
