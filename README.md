@@ -26,7 +26,40 @@ PART 1: Just use the RStudio Server!
 
 7. Aaaaand you all know how to use RStudio.
 
-PART 2: Create a yml file and a pbs script for creating conda environments.
+PART 2: Create a pbs script to submit an R code to the cluster
+
+   a) #!/bin/bash
+   
+   b) #PBS -A open Allocation
+      
+      i. Yours could also be the stat department allocation, "drh20_a_g_sc_default". There are 10 nodes and 20 processors per node available on this allocation. 
+   
+   c) #PBS -l nodes=1:ppn=3 Nodes and processors per node
+      
+      i. Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
+   
+   d) #PBS -l walltime=72:00:00 Requested wall time, format is HOURS:MINUTES:SECONDS
+      
+      i. You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
+   
+   e) #PBS -l pmem=5GB Memory per processor
+      
+      i. Be careful not to request more memory per node than is allowed in your specified allocation. Mine allows up to 250 gb total, which I think is also true for the stat department allocation since "sc" indicates standard core -- same kind of allocation. 
+
+   f) #PBS -N ProjName Job Name
+   
+   g) #PBS -j oe Prints log file for completion and errors
+   
+   h) #PBS -m abe Sends email when job aborts, begins, and ends
+   
+   i) #PBS -M psuid@psu.edu Email Address
+   
+   j) cd /storage/work/PSUID/whereIsYourFile Changes directory to where your R file is located
+   
+   k) Rscript test.R Runs the R file
+
+
+PART 3.1: Create a yml file and a pbs script for creating conda environments.
 
 1. Create a new text file and add dependencies (a.k.a. R packages) as shown in parallel_env.yml
    
@@ -35,44 +68,21 @@ PART 2: Create a yml file and a pbs script for creating conda environments.
 2. Make sure to save the file name as parallel_env.yml (the .yml part is most important, DO NOT write .R!)
 
 
-PART 2: Create a pbs script for creating conda environments.
+PART 3.2: Create a pbs script for creating conda environments.
 
-1. Create another new text file with specifications as shown in parallel_env.pbs
+1. Create another new text file with specifications as shown in parallel_env.pbs. The new parts of the pbs file are: 
    
-   a) "#!/bin/bash": Always put this at the top. Don't ask me what it means.
+   a) "module load python/3.6.8": need this to set up a conda environment. The appropriate version of python is specified at https://www.icds.psu.edu/computing-services/software/
    
-   b) "#PBS -l nodes=1:ppn=1": Only specify >1 ppn (processor per node) if you need to parallelize code.
-      
-      i. Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
+   b) "module load anaconda3/2021.05": need this to set up a conda environment. The appropriate version of anaconda is specified at https://www.icds.psu.edu/computing-services/software/
    
-   c) "#PBS -l walltime=48:00:00": what is the maximum amount of time you think your code will take to run? format is HOURS:MINUTES:SECONDS. 
-      
-      i. You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
+   c) "conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop": create the conda environment with the name of your .yml file in the specified folder!
    
-   d) "#PBS -l pmem=10gb" OR "#PBS -l mem=10gb": if you write pmem this is the amount of memory per processor. If you write mem, this is the amount of total memory requested. 
-      
-      i. If you only specify 1 ppn, these two mean the same thing. 
-      
-      ii. Be careful not to request more memory per node than is allowed in your specified allocation. Mine allows up to 250 gb total, which I think is also true for the stat department allocation since "sc" indicates standard core -- same kind of allocation. 
-   
-   e) "#PBS -A open": the allocation you want to run your code on. 
-      
-      i. Yours could also be the stat department allocation, "drh20_a_g_sc_default". There are 10 nodes and 20 processors per node available on this allocation. 
-   
-   f) "#PBS -j oe": I forgot what this means but I always leave it there.
-   
-   g) "module load python/3.6.8": need this to set up a conda environment. The appropriate version of python is specified at https://www.icds.psu.edu/computing-services/software/
-   
-   h) "module load anaconda3/2021.05": need this to set up a conda environment. The appropriate version of anaconda is specified at https://www.icds.psu.edu/computing-services/software/
-   
-   i) "cd /storage/work/svr5482/ROAR_workshop": cd changes the working directory to the file structure where your .yml is located.
-   
-   j) "conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop": create the conda environment with the name of your .yml file in the specified folder!
-   
-   k) "source deactivate": deactivate your conda environment when you're done using it.
+   d) "source deactivate": deactivate your conda environment when you're done using it.
 
 
 
 "source activate /storage/work/svr5482/parallel_env" activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
+
 "cd /storage/work/svr5482/Climate_CornYield-me/yield/data_prep": cd changes the working directory to the file structure where your R script is located.
 "Rscript macametmodel_dataframe.R": tells ROAR to run your .R file
