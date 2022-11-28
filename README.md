@@ -33,17 +33,15 @@ PART 2: Create a pbs script to submit an R code to the cluster
       #PBS -A open   
    Allocation- Yours could also be the stat department allocation, "drh20_a_g_sc_default". There are 10 nodes and 20 processors per node available on this allocation. 
    
-      #PBS -l nodes=1:ppn=3 Nodes and processors per node
-      
-   Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
+      #PBS -l nodes=1:ppn=3 
+   Nodes and processors per node. Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
    
       #PBS -l walltime=72:00:00 
       
    Requested wall time, format is HOURS:MINUTES:SECONDS. You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
    
-      #PBS -l pmem=5GB Memory per processor
-      
-   Be careful not to request more memory per node than is allowed in your specified allocation. Mine allows up to 250 gb total, which I think is also true for the stat department allocation since "sc" indicates standard core -- same kind of allocation. 
+      #PBS -l pmem=5GB 
+   Memory per processor. Be careful not to request more memory per node than is allowed in your specified allocation. Mine allows up to 250 gb total, which I think is also true for the stat department allocation since "sc" indicates standard core -- same kind of allocation. 
 
       #PBS -N ProjName 
       
