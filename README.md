@@ -81,17 +81,29 @@ PART 3.2: Create a pbs script for creating conda environments.
 
 1. Create another new text file with specifications as shown in parallel_env.pbs. The new parts of the pbs file are: 
    
-   a) "module load python/3.6.8": need this to set up a conda environment. The appropriate version of python is specified at https://www.icds.psu.edu/computing-services/software/
+       module load python/3.6.8
    
-   b) "module load anaconda3/2021.05": need this to set up a conda environment. The appropriate version of anaconda is specified at https://www.icds.psu.edu/computing-services/software/
+   Need this to set up a conda environment. The appropriate version of python is specified at https://www.icds.psu.edu/computing-services/software/
    
-   c) "conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop": create the conda environment with the name of your .yml file in the specified folder!
+       module load anaconda3/2021.05
    
-   d) "source deactivate": deactivate your conda environment when you're done using it.
+   Need this to set up a conda environment. The appropriate version of anaconda is specified at https://www.icds.psu.edu/computing-services/software/
+   
+      conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop
+   
+   create the conda environment with the name of your .yml file in the specified folder!
+   
+      source deactivate
+      
+   Deactivate your conda environment when you're done using it.
 
+      source activate /storage/work/svr5482/parallel_env 
+   
+   Activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
 
+      cd /storage/work/svr5482/Climate_CornYield-me/yield/data_prep
+cd changes the working directory to the file structure where your R script is located.
 
-"source activate /storage/work/svr5482/parallel_env" activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
+      Rscript macametmodel_dataframe.R
 
-"cd /storage/work/svr5482/Climate_CornYield-me/yield/data_prep": cd changes the working directory to the file structure where your R script is located.
-"Rscript macametmodel_dataframe.R": tells ROAR to run your .R file
+Tells ROAR to run your .R file
