@@ -97,7 +97,7 @@ PART 3.2: Create a pbs script for creating conda environments.
       
    Deactivate your conda environment when you're done using it.
 
-       source activate /storage/work/svr5482/parallel_env 
+       source activate /storage/work/svr5482/ROAR_workshop/parallel_env 
    
    Activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
 
