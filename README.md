@@ -67,7 +67,7 @@ PART 2: Create a pbs script for creating conda environments.
    
    i) "cd /storage/work/svr5482/ROAR_workshop": cd changes the working directory to the file structure where your .yml is located.
    
-   j) "conda env create --file paralell_env.yml": create the conda environment with the name of your .yml file!
+   j) "conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop": create the conda environment with the name of your .yml file in the specified folder!
    
    k) "source deactivate": deactivate your conda environment when you're done using it.
 
