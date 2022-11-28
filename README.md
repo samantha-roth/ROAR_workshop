@@ -36,7 +36,7 @@ PART 2: Create a pbs script to submit an R code to the cluster
       #PBS -l nodes=1:ppn=3 
    Nodes and processors per node. Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
    
-      #PBS -l walltime=72:00:00 
+      #PBS -l walltime=48:00:00 
       
    Requested wall time, format is HOURS:MINUTES:SECONDS. You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
    
@@ -100,10 +100,3 @@ PART 3.2: Create a pbs script for creating conda environments.
        source activate /storage/work/svr5482/ROAR_workshop/parallel_env 
    
    Activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
-
-       cd /storage/work/svr5482/Climate_CornYield-me/yield/data_prep
-cd changes the working directory to the file structure where your R script is located.
-
-       Rscript macametmodel_dataframe.R
-
-Tells ROAR to run your .R file
