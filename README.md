@@ -37,9 +37,9 @@ PART 2: Create a pbs script to submit an R code to the cluster
       
    Ex: "#PBS -l nodes=1:ppn=19": Request 19 ppn to parallelize your code across 18 processors. Request 19 ppn because one parent node is needed.
    
-      #PBS -l walltime=72:00:00 Requested wall time, format is HOURS:MINUTES:SECONDS
+      #PBS -l walltime=72:00:00 
       
-   You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
+   Requested wall time, format is HOURS:MINUTES:SECONDS. You can't request more than 48 hours. Your code will get to the front of the line to be run faster if you request less time.
    
       #PBS -l pmem=5GB Memory per processor
       
