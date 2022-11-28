@@ -72,7 +72,7 @@ PART 3.1: Create a yml file and a pbs script for creating conda environments.
 
 1. Create a new text file and add dependencies (a.k.a. R packages) as shown in parallel_env.yml
    
-   a) In general, when adding dependencies, you can find the right name by searching the name of the R package in the search bar at: https://anaconda.org/conda-forge/
+  a) In general, when adding dependencies, you can find the right name by searching the name of the R package in the search bar at: https://anaconda.org/conda-forge/
 
 2. Make sure to save the file name as parallel_env.yml (the .yml part is most important, DO NOT write .R!)
 
@@ -89,21 +89,21 @@ PART 3.2: Create a pbs script for creating conda environments.
    
    Need this to set up a conda environment. The appropriate version of anaconda is specified at https://www.icds.psu.edu/computing-services/software/
    
-      conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop
+       conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop
    
    create the conda environment with the name of your .yml file in the specified folder!
    
-      source deactivate
+       source deactivate
       
    Deactivate your conda environment when you're done using it.
 
-      source activate /storage/work/svr5482/parallel_env 
+       source activate /storage/work/svr5482/parallel_env 
    
    Activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
 
-      cd /storage/work/svr5482/Climate_CornYield-me/yield/data_prep
+       cd /storage/work/svr5482/Climate_CornYield-me/yield/data_prep
 cd changes the working directory to the file structure where your R script is located.
 
-      Rscript macametmodel_dataframe.R
+       Rscript macametmodel_dataframe.R
 
 Tells ROAR to run your .R file
