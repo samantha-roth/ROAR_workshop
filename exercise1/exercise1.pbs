@@ -10,7 +10,6 @@ echo "Job started on `hostname` at `date`"
 
 cd /storage/work/svr5482/ROAR_workshop/exercise1
 
-module load R/4.0.5
 Rscript exercise2.R
 
 echo " "
