@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -l walltime=3:00:00
+#PBS -l nodes=1:ppn=10
+#PBS -A open
+#PBS -l pmem=5gb
+#PBS -j oe
+
+module load python/3.6.8
+module load anaconda3/2021.05
+conda activate parallel_env
+
+cd /storage/work/svr5482/ROAR_workshop/exercise4
+Rscript exercise4.R
