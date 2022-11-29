@@ -2,7 +2,7 @@
 tutorial on how to do some basic stuff with PSU's supercomputing system
 
 
-PART 1: Just use the RStudio Server!
+PART 0: Just use the RStudio Server!
 
 1. Go to https://portal2.aci.ics.psu.edu/pun/sys/dashboard/ and log in.
 
@@ -26,7 +26,7 @@ PART 1: Just use the RStudio Server!
 
 7. Aaaaand you all know how to use RStudio.
 
-PART 2: Create a pbs script to submit an R code to the cluster
+PARTS 1-2: Create a pbs script to submit an R code to the cluster
    
       #PBS -A open   
    Allocation- Yours could also be the stat department allocation, "drh20_a_g_sc_default". There are 10 nodes and 20 processors per node available on this allocation. 
