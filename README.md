@@ -27,8 +27,6 @@ PART 1: Just use the RStudio Server!
 7. Aaaaand you all know how to use RStudio.
 
 PART 2: Create a pbs script to submit an R code to the cluster
-
-      #!/bin/bash
    
       #PBS -A open   
    Allocation- Yours could also be the stat department allocation, "drh20_a_g_sc_default". There are 10 nodes and 20 processors per node available on this allocation. 
@@ -80,6 +78,10 @@ PART 3.1: Create a yml file and a pbs script for creating conda environments.
 PART 3.2: Create a pbs script for creating conda environments.
 
 1. Create another new text file with specifications as shown in parallel_env.pbs. The new parts of the pbs file are: 
+
+       #!/bin/bash
+  
+  Need this to enable creation and usage of conda environments.
    
        module load python/3.6.8
    
@@ -89,14 +91,18 @@ PART 3.2: Create a pbs script for creating conda environments.
    
    Need this to set up a conda environment. The appropriate version of anaconda is specified at https://www.icds.psu.edu/computing-services/software/
    
-       conda env create --file parallel_env.yml --prefix /storage/work/svr5482/ROAR_workshop
+       conda env create --file parallel_env.yml
    
    create the conda environment with the name of your .yml file in the specified folder!
    
-       source deactivate
+       conda deactivate
       
    Deactivate your conda environment when you're done using it.
 
-       source activate /storage/work/svr5482/ROAR_workshop/parallel_env 
+PART 4: Run a R script within a conda environment.
+
+1. The new parts of the pbs file are:
+
+       conda activate parallel_env 
    
-   Activates the conda environment you want to run your code in. If you're not using anything more than the base R packages in your code you don't need this line since you don't need to create a conda environment to load other packages. I'll send another email on conda environments.
+   Activates the conda environment you want to run your code in.
