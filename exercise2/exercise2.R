@@ -1,16 +1,17 @@
-#use foreach and doParallel
+#fit a Gaussian process emulator to each column of c(Y_R,YC_R) in parallel
 rm(list=ls())
 
 library(foreach)
 library(doParallel)
 
 # Exercise 2
-# This code generates 10 sets of samples of size n=100k. 
+# This code generates 20 sets of samples of size n=100k. 
 # Each sample is drawn from a N(mu_i,5) for i={1,2,...,20} where mu_{1:20} = {10, 20, 30 ,...180,190,200}. 
 # Note that it takes 5 seconds to generate a sample.
 # The code generates a histogram for each set and saves it as a pdf. 
 # We use 10 processors in parallel
 
+setwd("/storage/work/svr5482/ROAR_workshop/exercise2")
 
 # Set the number of replicates
 setNum<-9 
@@ -38,6 +39,9 @@ registerDoParallel(cl)
 #clusterEvalQ(cl, library(doParallel))
 #clusterEvalQ(cl, library(foreach))
 
+
+#findata<- matrix(NA, nrow= sampleSize, ncol= setNum)
+
 foreach(i = 1:setNum)%dopar%{
   filetitle=i
   print(paste("Generating Sample #",i))
@@ -48,7 +52,9 @@ foreach(i = 1:setNum)%dopar%{
   hist(data, main =paste("Histogram: mean=",10*filetitle,sep=""))
   dev.off()
   
-  save(data,file= paste("/storage/work/svr5482/ROAR_workshop/exercise2/data ",i,".RData",sep=""))
+  save(data,file= paste("data ",i,".RData",sep=""))
 }
+
+#save(findata,file="findata.RData")
 
 stopCluster(cl)
